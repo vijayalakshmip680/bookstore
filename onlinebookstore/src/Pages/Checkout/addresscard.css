@@ -1,0 +1,30 @@
+.address-card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.address-card{
+    width: 33.33%;
+    padding: 10px;
+}
+.card-item{
+    border: 1px solid #333;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px;
+}
+.address-card p{
+    background-color: unset;
+}
+.activeadd{
+   background-color: #d0e3ff;
+}
+.address-detail{
+    padding-inline-start: 10px;
+}
+
+@media (max-width: 768px) {
+    .address-card{
+        width: 100%;
+    }
+}

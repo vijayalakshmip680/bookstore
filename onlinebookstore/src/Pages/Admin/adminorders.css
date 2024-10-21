@@ -1,0 +1,33 @@
+.admin-orders {
+    padding: 20px;
+    flex: 1;
+    padding-block-start: 0px;
+}
+.admin-order-title{
+    font-size: 20px;
+    padding-block-end: 1rem;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.filter-dropdown {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th, .orders-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.orders-table th {
+    background-color: #f2f2f2;
+}

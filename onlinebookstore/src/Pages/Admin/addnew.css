@@ -1,0 +1,89 @@
+.addnew-modal{
+    display: flex;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.85);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.modal-cover{
+    background-color: #fff;
+    border-radius: .25rem;
+    padding-block: .5rem;
+    margin: auto;
+    width: 50%;
+}
+.product-add-form{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.form-items{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 5%;
+padding-block: .5rem;
+}
+
+.form-item{
+width: 45%;
+}
+.form-item label{
+    margin-bottom: .5rem;
+    display: inline-block;
+}
+.desc-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-inline: .75rem;
+    padding-block: .5rem;
+}
+.heading-form{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+textarea{
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    outline: none;
+}
+.add-btn{
+    background-color:#081f5c;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 0 auto;    
+    color: #fff;
+}
+.error{
+    color: red;
+    visibility: block;
+    font-size: 12px;
+    margin-block-start: .5rem;
+    text-align: start;
+}
+.hidden{
+    visibility: hidden;
+}
+.close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    background-color: #ccc;
+}
+@media (max-width: 768px) {
+    .modal-cover{
+        width: 90%;
+    }
+}

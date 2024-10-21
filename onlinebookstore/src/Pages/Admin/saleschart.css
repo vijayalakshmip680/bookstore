@@ -1,0 +1,19 @@
+.chart-cover{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 1rem;
+}
+.chart-wrapper{
+    width: 40%;
+}
+.chart-wrapper h4{
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .chart-wrapper{
+        width: 100%;
+    }
+}

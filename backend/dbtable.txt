@@ -1,0 +1,262 @@
+-- Database: bookstore
+
+-- DROP DATABASE IF EXISTS bookstore;
+
+CREATE DATABASE bookstore
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'English_United States.1252'
+    LC_CTYPE = 'English_United States.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+
+
+<................................Address Table.........................>
+
+-- Table: books.address
+
+-- DROP TABLE IF EXISTS books.address;
+
+CREATE TABLE IF NOT EXISTS books.address
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    userid integer NOT NULL,
+    house character varying COLLATE pg_catalog."default" NOT NULL,
+    area character varying COLLATE pg_catalog."default" NOT NULL,
+    city character varying COLLATE pg_catalog."default" NOT NULL,
+    pin character varying COLLATE pg_catalog."default" NOT NULL,
+    active integer NOT NULL DEFAULT 0,
+    CONSTRAINT address_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.address
+    OWNER to postgres;
+
+
+
+INSERT INTO books.address(
+	id, userid, house, area, city, pin, active)
+	VALUES (?, ?, ?, ?, ?, ?, ?);
+
+
+
+<...........................book table....................................>
+
+-- Table: books.book
+
+-- DROP TABLE IF EXISTS books.book;
+
+CREATE TABLE IF NOT EXISTS books.book
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    bookname character varying COLLATE pg_catalog."default" NOT NULL,
+    authorname character varying COLLATE pg_catalog."default" NOT NULL,
+    quantity integer NOT NULL DEFAULT 0,
+    description character varying COLLATE pg_catalog."default" NOT NULL,
+    imageurl character varying COLLATE pg_catalog."default" NOT NULL,
+    price double precision NOT NULL,
+    category integer NOT NULL,
+    CONSTRAINT book_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.book
+    OWNER to postgres;
+
+
+INSERT INTO books.book(
+	id, bookname, authorname, quantity, description, imageurl, price, category)
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+
+<............................cart table................................>
+
+
+-- Table: books.cart
+
+-- DROP TABLE IF EXISTS books.cart;
+
+CREATE TABLE IF NOT EXISTS books.cart
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    userid integer NOT NULL,
+    status character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT cart_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.cart
+    OWNER to postgres;
+
+
+INSERT INTO books.cart(
+	id, userid, status)
+	VALUES (?, ?, ?);
+
+
+<..........................cartdetails..........................>
+
+-- Table: books.cartdetails
+
+-- DROP TABLE IF EXISTS books.cartdetails;
+
+CREATE TABLE IF NOT EXISTS books.cartdetails
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    quantity integer NOT NULL,
+    bookid integer NOT NULL,
+    cartid integer NOT NULL,
+    price double precision NOT NULL DEFAULT 0,
+    CONSTRAINT cartdetails_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.cartdetails
+    OWNER to postgres;
+
+
+INSERT INTO books.cartdetails(
+	id, quantity, bookid, cartid, price)
+	VALUES (?, ?, ?, ?, ?);
+
+
+<..........................categories.......................>
+
+-- Table: books.categories
+
+-- DROP TABLE IF EXISTS books.categories;
+
+CREATE TABLE IF NOT EXISTS books.categories
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    category character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT categories_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.categories
+    OWNER to postgres;
+
+
+INSERT INTO books.categories(
+	id, category)
+	VALUES (?, ?);
+
+
+
+<...............................orderdetails...........................>
+
+-- Table: books.orderdetails
+
+-- DROP TABLE IF EXISTS books.orderdetails;
+
+CREATE TABLE IF NOT EXISTS books.orderdetails
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    bookid integer NOT NULL,
+    orderid integer NOT NULL,
+    quantity integer NOT NULL,
+    CONSTRAINT orderdetails_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.orderdetails
+    OWNER to postgres;
+
+
+INSERT INTO books.orderdetails(
+	id, bookid, orderid, quantity)
+	VALUES (?, ?, ?, ?);
+
+
+<..........................orders......................>
+
+-- Table: books.orders
+
+-- DROP TABLE IF EXISTS books.orders;
+
+CREATE TABLE IF NOT EXISTS books.orders
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    status character varying COLLATE pg_catalog."default" NOT NULL,
+    addressid integer NOT NULL,
+    userid integer NOT NULL,
+    cartid integer NOT NULL,
+    orderdate date NOT NULL,
+    total double precision NOT NULL DEFAULT 0,
+    CONSTRAINT orders_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.orders
+    OWNER to postgres;
+
+INSERT INTO books.orders(
+	id, status, addressid, userid, cartid, orderdate, total)
+	VALUES (?, ?, ?, ?, ?, ?, ?);
+
+
+<..................reviews................>
+
+-- Table: books.reviews
+
+-- DROP TABLE IF EXISTS books.reviews;
+
+CREATE TABLE IF NOT EXISTS books.reviews
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    bookid integer NOT NULL,
+    userid integer NOT NULL,
+    review character varying COLLATE pg_catalog."default" NOT NULL,
+    rating integer NOT NULL,
+    CONSTRAINT reviews_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books.reviews
+    OWNER to postgres;
+
+INSERT INTO books.reviews(
+	id, bookid, userid, review, rating)
+	VALUES (?, ?, ?, ?, ?);
+
+<................user.......................>
+
+-- Table: books.user
+
+-- DROP TABLE IF EXISTS books."user";
+
+CREATE TABLE IF NOT EXISTS books."user"
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    firstname character varying COLLATE pg_catalog."default" NOT NULL,
+    lastname character varying COLLATE pg_catalog."default" NOT NULL,
+    password character varying COLLATE pg_catalog."default" NOT NULL,
+    isadmin boolean NOT NULL DEFAULT false,
+    username character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT user_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS books."user"
+    OWNER to postgres;
+
+
+INSERT INTO books."user"(
+	id, firstname, lastname, password, isadmin, username)
+	VALUES (?, ?, ?, ?, ?, ?);
+

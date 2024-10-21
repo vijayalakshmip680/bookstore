@@ -1,0 +1,35 @@
+/* .book-item-wrapper.skeleton {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+} */
+.deatils-skeleton{
+    width: 100%;
+}
+.skeleton-image {
+    width: 164px; /* Set width for the image */
+    height: 148px; /* Set height for the image */
+    background-color: #e0e0e0; /* Placeholder color */
+    border-radius: 4px;
+}
+
+.skeleton-title,
+.skeleton-author,
+.skeleton-price {
+    height: 20px;
+    background-color: #e0e0e0;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    width: 80%; /* Width for title */
+}
+
+.skeleton-author {
+    width: 60%; /* Width for author */
+}
+
+.skeleton-price {
+    width: 40%; /* Width for price */
+}

@@ -1,0 +1,23 @@
+.cart-summary h3 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+.cart-summary {
+    flex: 1; /* Take less space on the right */
+    /* padding-left: 20px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.summary-details {
+    /* margin-bottom: 20px; */
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+.summary-details p{
+    display: flex;
+    justify-content: space-between;
+}
+
